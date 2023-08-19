@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  ChakraProvider,
+  Grid,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react';
 
 function ProductList() {
   const navigate = useNavigate();
@@ -11,54 +21,221 @@ function ProductList() {
     axios
       .get('https://ruby-adventurous-ox.cyclic.cloud/api/product')
       .then(res => {
-        console.log(res.data);
-        setProduct(res.data.data.videoproduct);
+        setProduct(res.data.data);
       });
   }, []);
 
   return (
     <div className="container">
-      {/* Komponen Header */}
-      <header className="bg-dark text-white p-3">
-        <div className="container d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center">
-            <h1 className="me-4">Title</h1>
-          </div>
-          <div className="d-flex align-items-center">
-            <span className="me-2">Username</span>
-            <button className="btn btn-light">Logout</button>
-          </div>
-        </div>
-      </header>
-
-      {/* Komponen Body */}
-      <div className="container mt-4">
-        <div className="row">
-          {product.map(el => {
-            return (
-              <div
-                onClick={() => navigate(`/thumbnail-list/${el._id}`)}
-                key={el._id}
-                className="col-md-4 mb-4"
-              >
-                <div className="card">
-                  <div className="card-header">
-                    <img
-                      className="img-fluid"
-                      src={el.urlImageThumbnail}
-                      alt="Link Gambar Tidak Valid"
-                      style={{ height: '300px' }}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <p>{el.title}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <>
+        <ChakraProvider>
+          <Box textAlign="center" fontSize="xl">
+            <Grid minH="100vh" p={3}>
+              <Tabs variant="soft-rounded" colorScheme="green">
+                <TabList>
+                  <Tab>Live</Tab>
+                  <Tab>Explore</Tab>
+                  <Tab>Official Store</Tab>
+                  <Tab>Terbaru</Tab>
+                  <Tab>Upcoming</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel>
+                    <div className="container mt-4">
+                      <div className="row">
+                        {product.map(el => {
+                          return (
+                            <div
+                              onClick={() => navigate(`/product/${el._id}`)}
+                              key={el._id}
+                              className="col-md-4 mb-4"
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <div className="card">
+                                <img
+                                  className="img-fluid"
+                                  src={el.urlThumbnail}
+                                  alt="Link Gambar Tidak Valid"
+                                  style={{
+                                    height: '300px',
+                                    borderRadius: '5px',
+                                  }}
+                                />
+                                <div className="card-body">
+                                  <div className="d-flex justify-content-between">
+                                    <p className="text-success fw-bold">
+                                      {el.title}
+                                    </p>
+                                    <p className="text-warning">
+                                      Rp. {el.price},-
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div className="container mt-4">
+                      <div className="row">
+                        {product.map(el => {
+                          return (
+                            <div
+                              onClick={() => navigate(`/product/${el._id}`)}
+                              key={el._id}
+                              className="col-md-4 mb-4"
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <div className="card">
+                                <img
+                                  className="img-fluid"
+                                  src={el.urlThumbnail}
+                                  alt="Link Gambar Tidak Valid"
+                                  style={{
+                                    height: '300px',
+                                    borderRadius: '5px',
+                                  }}
+                                />
+                                <div className="card-body">
+                                  <div className="d-flex justify-content-between">
+                                    <p className="text-success fw-bold">
+                                      {el.title}
+                                    </p>
+                                    <p className="text-warning">
+                                      Rp. {el.price},-
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div className="container mt-4">
+                      <div className="row">
+                        {product.map(el => {
+                          return (
+                            <div
+                              onClick={() => navigate(`/product/${el._id}`)}
+                              key={el._id}
+                              className="col-md-4 mb-4"
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <div className="card">
+                                <img
+                                  className="img-fluid"
+                                  src={el.urlThumbnail}
+                                  alt="Link Gambar Tidak Valid"
+                                  style={{
+                                    height: '300px',
+                                    borderRadius: '5px',
+                                  }}
+                                />
+                                <div className="card-body">
+                                  <div className="d-flex justify-content-between">
+                                    <p className="text-success fw-bold">
+                                      {el.title}
+                                    </p>
+                                    <p className="text-warning">
+                                      Rp. {el.price},-
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div className="container mt-4">
+                      <div className="row">
+                        {product.map(el => {
+                          return (
+                            <div
+                              onClick={() => navigate(`/product/${el._id}`)}
+                              key={el._id}
+                              className="col-md-4 mb-4"
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <div className="card">
+                                <img
+                                  className="img-fluid"
+                                  src={el.urlThumbnail}
+                                  alt="Link Gambar Tidak Valid"
+                                  style={{
+                                    height: '300px',
+                                    borderRadius: '5px',
+                                  }}
+                                />
+                                <div className="card-body">
+                                  <div className="d-flex justify-content-between">
+                                    <p className="text-success fw-bold">
+                                      {el.title}
+                                    </p>
+                                    <p className="text-warning">
+                                      Rp. {el.price},-
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </TabPanel>
+                  <TabPanel>
+                    <div className="container mt-4">
+                      <div className="row">
+                        {product.map(el => {
+                          return (
+                            <div
+                              onClick={() => navigate(`/product/${el._id}`)}
+                              key={el._id}
+                              className="col-md-4 mb-4"
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <div className="card">
+                                <img
+                                  className="img-fluid"
+                                  src={el.urlThumbnail}
+                                  alt="Link Gambar Tidak Valid"
+                                  style={{
+                                    height: '300px',
+                                    borderRadius: '5px',
+                                  }}
+                                />
+                                <div className="card-body">
+                                  <div className="d-flex justify-content-between">
+                                    <p className="text-success fw-bold">
+                                      {el.title}
+                                    </p>
+                                    <p className="text-warning">
+                                      Rp. {el.price},-
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </Grid>
+          </Box>
+        </ChakraProvider>
+      </>
     </div>
   );
 }

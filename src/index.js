@@ -1,6 +1,7 @@
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import DetailProduct from './pages/DetailProduct';
 import Home from './pages/Home';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
@@ -14,8 +15,8 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/thumbnail',
-    element: <Home />,
+    path: '/product/:id',
+    element: <DetailProduct />,
   },
 ]);
 
